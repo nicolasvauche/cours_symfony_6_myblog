@@ -1,5 +1,8 @@
-@import "./utils/variables";
+@import "utils/variables";
 
-body {
-  background-color: $color-primary;
-}
+@import "~bootstrap/scss/bootstrap";
+
+@import "layout/header", "layout/main", "layout/footer";
+
+@import "components/logo";
+

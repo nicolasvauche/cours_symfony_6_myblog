@@ -1,3 +1,43 @@
-<header class="app-header">
-    HEADER
+<header class="app-header p-1 mb-3 border-bottom bg-light">
+    <div class="container">
+        <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+            <a href="{{ path('app_home') }}"
+               class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
+                <img src="{{ asset('build/img/logo.png') }}" class="app-logo" alt="MyBlog"/>
+            </a>
+
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li>
+                    <a href="{{ path('app_home') }}" class="nav-link px-2 link-body-emphasis">Accueil</a>
+                </li>
+            </ul>
+
+            <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
+                <input type="search"
+                       class="form-control bg-light text-bg-light"
+                       placeholder="Rechercher…"
+                       aria-label="Rechercher"/>
+            </form>
+
+            <div class="dropdown text-end">
+                <a href="#"
+                   class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown"
+                   aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+                </a>
+                <ul class="dropdown-menu text-small bg-light">
+                    <li>
+                        <a class="dropdown-item text-bg-light" href="#">Mon Profil</a>
+                    </li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li>
+                        <a class="dropdown-item text-danger" href="#">Déconnexion</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </header>
