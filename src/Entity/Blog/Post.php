@@ -5,6 +5,7 @@ namespace App\Entity\Blog;
 use App\Repository\Blog\PostRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation\Timestampable;
 
 #[ORM\Entity(repositoryClass: PostRepository::class)]
 class Post
@@ -24,9 +25,11 @@ class Post
     private ?string $content = null;
 
     #[ORM\Column]
+    #[Timestampable(on: 'create')]
     private ?\DateTimeImmutable $createdAt = null;
 
     #[ORM\Column]
+    #[Timestampable(on: 'update')]
     private ?\DateTimeImmutable $updatedAt = null;
 
     #[ORM\Column(nullable: true)]

@@ -1,0 +1,6 @@
+stof_doctrine_extensions:
+  default_locale: '%app_localeStr%'
+  orm:
+    default:
+      timestampable: true
+
