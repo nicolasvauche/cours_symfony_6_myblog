@@ -20,7 +20,7 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
         $client->request('GET', '/truc');
 
-        $this->assertResponseStatusCodeSame(408);
+        $this->assertResponseStatusCodeSame(404);
         $this->assertEquals(404, $client->getResponse()->getStatusCode());
     }
 }

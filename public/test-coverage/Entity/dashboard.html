@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /Users/nicolasvauche/Sites/Symfony/sf_myblog/src/Controller</title>
+  <title>Dashboard for /Users/nicolasvauche/Sites/Symfony/sf_myblog/src/Entity</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_css/bootstrap.min.css?v=9.2.29" rel="stylesheet" type="text/css">
   <link href="../_css/nv.d3.min.css?v=9.2.29" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="../index.html">/Users/nicolasvauche/Sites/Symfony/sf_myblog/src</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Controller</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Entity</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -173,7 +173,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,1], "Method Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,13], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -223,7 +223,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"DefaultController.php.html#9\">App\\Controller\\DefaultController<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[100,13,"<a href=\"Blog\/Post.php.html#9\">App\\Entity\\Blog\\Post<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -247,7 +247,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"DefaultController.php.html#11\">App\\Controller\\DefaultController::index<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"Blog\/Post.php.html#35\">App\\Entity\\Blog\\Post::getId<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#40\">App\\Entity\\Blog\\Post::getTitle<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#45\">App\\Entity\\Blog\\Post::setTitle<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#52\">App\\Entity\\Blog\\Post::getCover<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#57\">App\\Entity\\Blog\\Post::setCover<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#64\">App\\Entity\\Blog\\Post::getContent<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#69\">App\\Entity\\Blog\\Post::setContent<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#76\">App\\Entity\\Blog\\Post::getCreatedAt<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#81\">App\\Entity\\Blog\\Post::setCreatedAt<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#88\">App\\Entity\\Blog\\Post::getUpdatedAt<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#93\">App\\Entity\\Blog\\Post::setUpdatedAt<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#100\">App\\Entity\\Blog\\Post::getPublishedAt<\/a>"],[100,1,"<a href=\"Blog\/Post.php.html#105\">App\\Entity\\Blog\\Post::setPublishedAt<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
