@@ -27,6 +27,9 @@ class CategoryType extends AbstractType
                 'label' => 'Nom de la Catégorie',
                 'class' => Category::class,
                 'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
             ]);
     }
 

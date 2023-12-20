@@ -13,7 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/blog/categorie', name: 'app_blog_category_')]
 class AddController extends AbstractController
 {
-    #[Route('/new', name: 'new', methods: ['GET', 'POST'])]
+    #[Route('/nouvelle', name: 'new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
