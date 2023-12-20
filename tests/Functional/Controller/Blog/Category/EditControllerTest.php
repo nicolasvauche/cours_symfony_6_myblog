@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Functional\Controller\Blog;
+namespace App\Tests\Functional\Controller\Blog\Category;
 
 use App\Entity\Blog\Category;
 use Doctrine\ORM\EntityManagerInterface;
