@@ -3,6 +3,8 @@
 namespace App\Entity\Blog;
 
 use App\Repository\Blog\PostRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Mapping\Annotation\Timestampable;
@@ -38,6 +40,14 @@ class Post
     #[ORM\Column(nullable: true)]
     #[Assert\Type(type: \DateTimeImmutable::class, message: 'La date de publication doit être une date valide')]
     private ?\DateTimeImmutable $publishedAt = null;
+
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,6 +122,33 @@ class Post
     public function setPublishedAt(?\DateTimeImmutable $publishedAt): static
     {
         $this->publishedAt = $publishedAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Category>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Category $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->addPost($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Category $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            $category->removePost($this);
+        }
 
         return $this;
     }

@@ -4,9 +4,10 @@ namespace App\DataFixtures\Blog;
 
 use App\Entity\Blog\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 
-class BlogFixtures extends Fixture
+class PostFixtures extends Fixture implements OrderedFixtureInterface
 {
     public function load(ObjectManager $manager): void
     {
@@ -17,9 +18,15 @@ class BlogFixtures extends Fixture
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Assumenda, exercitationem, facilis. Beatae cupiditate deserunt dignissimos eum exercitationem fuga, hic id mollitia natus nemo nobis obcaecati perferendis perspiciatis quaerat quasi sequi!</p>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolor error laboriosam maxime minus optio, quaerat sequi sint vel voluptates! Accusantium animi asperiores at id iure maiores ratione rerum saepe.</p>
 EOF
-            );
+            )
+            ->addCategory($this->getReference('category-test'));
         $manager->persist($post);
 
         $manager->flush();
+    }
+
+    public function getOrder(): int
+    {
+        return 2;
     }
 }

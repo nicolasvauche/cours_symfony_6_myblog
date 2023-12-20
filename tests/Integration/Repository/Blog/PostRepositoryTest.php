@@ -2,7 +2,7 @@
 
 namespace App\Tests\Integration\Repository\Blog;
 
-use App\DataFixtures\Blog\BlogFixtures;
+use App\DataFixtures\Blog\PostFixtures;
 use App\Entity\Blog\Post;
 use Doctrine\Common\DataFixtures\Executor\ORMExecutor;
 use Doctrine\Common\DataFixtures\Loader;
@@ -30,7 +30,7 @@ class PostRepositoryTest extends KernelTestCase
     private function loadFixtures(): void
     {
         $loader = new Loader();
-        $loader->addFixture(new BlogFixtures());
+        $loader->addFixture(new PostFixtures());
 
         // Purge de la base de données
         $purger = new ORMPurger($this->entityManager);
