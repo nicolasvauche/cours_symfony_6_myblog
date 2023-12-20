@@ -24,6 +24,8 @@ class AddController extends AbstractController
             $entityManager->persist($category);
             $entityManager->flush();
 
+            $this->addFlash('success', 'La catégorie a bien été ajoutée.');
+
             return $this->redirectToRoute('app_blog_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

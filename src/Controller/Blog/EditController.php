@@ -22,6 +22,8 @@ class EditController extends AbstractController
         if($form->isSubmitted() && $form->isValid()) {
             $entityManager->flush();
 
+            $this->addFlash('success', 'La catégorie a bien été modifiée.');
+
             return $this->redirectToRoute('app_blog_category_index', [], Response::HTTP_SEE_OTHER);
         }
 

@@ -6,8 +6,11 @@ use App\Repository\Blog\CategoryRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategoryRepository::class)]
+#[UniqueEntity(fields: ['name'], message: 'Cette catégorie existe déjà')]
 class Category
 {
     #[ORM\Id]
@@ -16,6 +19,7 @@ class Category
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank(message: 'Veuillez saisir un nom pour cette catégorie')]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'children')]
@@ -72,7 +76,7 @@ class Category
 
     public function addChild(self $child): static
     {
-        if (!$this->children->contains($child)) {
+        if(!$this->children->contains($child)) {
             $this->children->add($child);
             $child->setParent($this);
         }
@@ -82,9 +86,9 @@ class Category
 
     public function removeChild(self $child): static
     {
-        if ($this->children->removeElement($child)) {
+        if($this->children->removeElement($child)) {
             // set the owning side to null (unless already changed)
-            if ($child->getParent() === $this) {
+            if($child->getParent() === $this) {
                 $child->setParent(null);
             }
         }
@@ -102,7 +106,7 @@ class Category
 
     public function addPost(Post $post): static
     {
-        if (!$this->posts->contains($post)) {
+        if(!$this->posts->contains($post)) {
             $this->posts->add($post);
         }
 

@@ -20,6 +20,8 @@ class DeleteController extends AbstractController
             $entityManager->flush();
         }
 
+        $this->addFlash('success', 'La catégorie a bien été supprimée.');
+
         return $this->redirectToRoute('app_blog_category_index', [], Response::HTTP_SEE_OTHER);
     }
 }
