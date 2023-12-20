@@ -1,0 +1,13 @@
+{% extends 'layouts/_index.html.twig' %}
+
+{% block title %}Modifier une Catégorie{% endblock %}
+
+{% block main %}
+    <h1>Modifier une Catégorie</h1>
+
+    {{ include('blog/category/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+    <a href="{{ path('app_blog_category_index') }}">Retour à la liste</a>
+
+    {{ include('blog/category/_delete_form.html.twig') }}
+{% endblock %}

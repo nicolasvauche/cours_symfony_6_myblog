@@ -1,0 +1,11 @@
+{% extends 'layouts/_index.html.twig' %}
+
+{% block title %}Nouvelle Catégorie{% endblock %}
+
+{% block main %}
+    <h1>Nouvelle Catégorie</h1>
+
+    {{ include('blog/category/_form.html.twig') }}
+
+    <a href="{{ path('app_blog_category_index') }}">Retour à la liste</a>
+{% endblock %}
