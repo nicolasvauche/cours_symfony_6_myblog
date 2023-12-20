@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Blog;
+namespace App\Controller\Blog\Category;
 
 use App\Entity\Blog\Category;
 use App\Form\Blog\CategoryType;

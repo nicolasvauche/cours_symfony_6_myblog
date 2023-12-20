@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller\Blog;
+namespace App\Controller\Blog\Category;
 
 use App\Repository\Blog\CategoryRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;

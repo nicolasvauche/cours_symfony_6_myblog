@@ -1,0 +1,38 @@
+{{ form_start(form, {'attr': {'class': 'app-form'}}) }}
+
+<div class="row mb-3">
+    <div class="col">
+        <label for="{{ form.categories.vars.id }}"
+               class="form-label {% if form.categories.vars.required %}required{% endif %}">
+            {{ form.categories.vars.label }}
+        </label>
+        {{ form_widget(form.categories) }}
+        {{ form_errors(form.categories) }}
+    </div>
+    <div class="col">
+        <label for="{{ form.title.vars.id }}" class="form-label {% if form.title.vars.required %}required{% endif %}">
+            {{ form.title.vars.label }}
+        </label>
+        {{ form_widget(form.title) }}
+        {{ form_errors(form.title) }}
+    </div>
+    <div class="col">
+        <label for="{{ form.publishedAt.vars.id }}"
+               class="form-label {% if form.publishedAt.vars.required %}required{% endif %}">
+            {{ form.publishedAt.vars.label }}
+        </label>
+        {{ form_widget(form.publishedAt) }}
+        {{ form_errors(form.publishedAt) }}
+    </div>
+</div>
+
+<div class="mb-3">
+    <label for="{{ form.content.vars.id }}" class="form-label {% if form.content.vars.required %}required{% endif %}">
+        {{ form.content.vars.label }}
+    </label>
+    {{ form_widget(form.content) }}
+    {{ form_errors(form.content) }}
+</div>
+
+<button type="submit" class="btn btn-primary">{{ button_label | default('Créer') }}</button>
+{{ form_end(form) }}
