@@ -3,24 +3,66 @@
 {% block title %}Categorie : {{ category.name }}{% endblock %}
 
 {% block main %}
-    <h1>Détails de la Catégorie {{ category.name }}</h1>
+    <section class="px-4 py-5 mb-5">
+        <h1 class="mb-3">Détails de la Catégorie {{ category.name }}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ category.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ category.name }}</td>
-            </tr>
-        </tbody>
-    </table>
+        <table class="table">
+            <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ category.id }}</td>
+                </tr>
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ category.name }}</td>
+                </tr>
+            </tbody>
+        </table>
 
-    <a href="{{ path('app_blog_category_index') }}">Retour à la liste</a>
+        <a href="{{ path('app_blog_category_index') }}">Retour à la liste</a>
 
-    <a href="{{ path('app_blog_category_edit', {'id': category.id}) }}">Modifier</a>
+        <a href="{{ path('app_blog_category_edit', {'id': category.id}) }}">Modifier</a>
 
-    {{ include('blog/category/_delete_form.html.twig') }}
+        {{ include('blog/category/_delete_form.html.twig') }}
+    </section>
+
+    <section class="bg-body-tertiary px-4 py-5 mb-5">
+        <h2 class="mb-3">Les Articles de cette Catégorie</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Titre</th>
+                    <th>Image</th>
+                    <th>Contenu</th>
+                    <th>Créé le</th>
+                    <th>Modifié le</th>
+                    <th>Publié le</th>
+                    <th>&nbsp;</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for post in category.posts %}
+                    <tr>
+                        <td>{{ post.id }}</td>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.cover }}</td>
+                        <td>{{ post.content | striptags | slice(0, 50) }}</td>
+                        <td>{{ post.createdAt ? post.createdAt|date('d/m/Y') : '' }}</td>
+                        <td>{{ post.updatedAt ? post.updatedAt|date('d/m/Y') : '' }}</td>
+                        <td>{{ post.publishedAt ? post.publishedAt|date('d/m/Y') : '' }}</td>
+                        <td>
+                            <a href="{{ path('app_blog_post_show', {'id': post.id}) }}">Détails</a>
+                            <a href="{{ path('app_blog_post_edit', {'id': post.id}) }}">Modifier</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="8">Aucun article</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
 {% endblock %}

@@ -14,7 +14,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class EditController extends AbstractController
 {
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
-    public function edit(Request $request, Category $category, EntityManagerInterface $entityManager): Response
+    public function edit(Request                $request,
+                         Category               $category,
+                         EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);

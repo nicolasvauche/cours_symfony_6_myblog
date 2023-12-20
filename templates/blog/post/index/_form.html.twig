@@ -34,5 +34,13 @@
     {{ form_errors(form.content) }}
 </div>
 
+<div class="mb-3">
+    <label for="{{ form.cover.vars.id }}" class="form-label {% if form.cover.vars.required %}required{% endif %}">
+        {{ form.cover.vars.label }}
+    </label>
+    {{ form_widget(form.cover) }}
+    {{ form_errors(form.cover) }}
+</div>
+
 <button type="submit" class="btn btn-primary">{{ button_label | default('Créer') }}</button>
 {{ form_end(form) }}

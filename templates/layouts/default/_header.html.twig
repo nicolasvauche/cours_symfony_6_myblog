@@ -8,15 +8,38 @@
 
             <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
                 <li>
-                    <a href="{{ path('app_home') }}" class="nav-link px-2 link-body-emphasis">Accueil</a>
+                    <a href="{{ path('app_home') }}" class="nav-link px-2">Accueil</a>
                 </li>
-                <li>
-                    <a href="{{ path('app_blog_category_index') }}" class="nav-link px-2 link-body-emphasis">
+                <li class="dropdown">
+                    <a class="nav-link px-2 dropdown-toggle"
+                       href="#"
+                       role="button"
+                       data-bs-toggle="dropdown"
+                       aria-expanded="false">
                         Catégories
                     </a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="{{ path('app_blog_category_index') }}"
+                               class="nav-link px-2 link-body-emphasis">
+                                Voir tout
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        {% for category in app_categoryListingService.categories %}
+                            <li>
+                                <a href="{{ path('app_blog_category_show', {'id': category.id}) }}"
+                                   class="nav-link px-2 link-body-emphasis">
+                                    {{ category.name }}
+                                </a>
+                            </li>
+                        {% endfor %}
+                    </ul>
                 </li>
                 <li>
-                    <a href="{{ path('app_blog_post_index') }}" class="nav-link px-2 link-body-emphasis">Articles</a>
+                    <a href="{{ path('app_blog_post_index') }}" class="nav-link px-2">Articles</a>
                 </li>
             </ul>
 

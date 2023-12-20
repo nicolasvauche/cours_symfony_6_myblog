@@ -1,11 +1,11 @@
 {% extends 'layouts/_index.html.twig' %}
 
-{% block title %}New Post{% endblock %}
+{% block title %}Nouvel Article{% endblock %}
 
 {% block main %}
-    <h1>Create new Post</h1>
+    <h1>Nouvel Article</h1>
 
     {{ include('blog/post/index/_form.html.twig') }}
 
-    <a href="{{ path('app_blog_post_index') }}">back to list</a>
+    <a href="{{ path('app_blog_post_index') }}">Retour à la liste</a>
 {% endblock %}

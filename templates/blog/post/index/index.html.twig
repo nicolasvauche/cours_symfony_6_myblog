@@ -1,21 +1,21 @@
 {% extends 'layouts/_index.html.twig' %}
 
-{% block title %}Post index{% endblock %}
+{% block title %}Les Articles{% endblock %}
 
 {% block main %}
-    <h1>Post index</h1>
+    <h1>Les Articles</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Cover</th>
-                <th>Content</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>PublishedAt</th>
-                <th>actions</th>
+                <th>Titre</th>
+                <th>Image</th>
+                <th>Contenu</th>
+                <th>Créé le</th>
+                <th>Modifié le</th>
+                <th>Publié le</th>
+                <th>&nbsp;</th>
             </tr>
         </thead>
         <tbody>
@@ -29,17 +29,17 @@
                     <td>{{ post.updatedAt ? post.updatedAt|date('d/m/Y') : '' }}</td>
                     <td>{{ post.publishedAt ? post.publishedAt|date('d/m/Y') : '' }}</td>
                     <td>
-                        <a href="{{ path('app_blog_post_show', {'id': post.id}) }}">show</a>
-                        <a href="{{ path('app_blog_post_edit', {'id': post.id}) }}">edit</a>
+                        <a href="{{ path('app_blog_post_show', {'id': post.id}) }}">Détails</a>
+                        <a href="{{ path('app_blog_post_edit', {'id': post.id}) }}">Modifier</a>
                     </td>
                 </tr>
             {% else %}
                 <tr>
-                    <td colspan="8">no records found</td>
+                    <td colspan="8">Aucun article</td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_blog_post_new') }}">Create new</a>
+    <a href="{{ path('app_blog_post_new') }}">Nouvel article</a>
 {% endblock %}

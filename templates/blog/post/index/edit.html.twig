@@ -1,13 +1,13 @@
 {% extends 'layouts/_index.html.twig' %}
 
-{% block title %}Edit Post{% endblock %}
+{% block title %}Modifier un Article{% endblock %}
 
 {% block main %}
-    <h1>Edit Post</h1>
+    <h1>Modifier un Article</h1>
 
-    {{ include('blog/post/index/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('blog/post/index/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('app_blog_post_index') }}">back to list</a>
+    <a href="{{ path('app_blog_post_index') }}">Retour à la liste</a>
 
     {{ include('blog/post/index/_delete_form.html.twig') }}
 {% endblock %}
