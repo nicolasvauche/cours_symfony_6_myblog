@@ -2,12 +2,12 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for /Users/nicolasvauche/Sites/Symfony/sf_myblog/src/Controller</title>
+  <title>Dashboard for /Users/nicolasvauche/Sites/Symfony/sf_myblog/src/DataFixtures/Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="../_css/bootstrap.min.css?v=9.2.29" rel="stylesheet" type="text/css">
-  <link href="../_css/nv.d3.min.css?v=9.2.29" rel="stylesheet" type="text/css">
-  <link href="../_css/style.css?v=9.2.29" rel="stylesheet" type="text/css">
-  <link href="../_css/custom.css" rel="stylesheet" type="text/css">
+  <link href="../../_css/bootstrap.min.css?v=9.2.29" rel="stylesheet" type="text/css">
+  <link href="../../_css/nv.d3.min.css?v=9.2.29" rel="stylesheet" type="text/css">
+  <link href="../../_css/style.css?v=9.2.29" rel="stylesheet" type="text/css">
+  <link href="../../_css/custom.css" rel="stylesheet" type="text/css">
  </head>
  <body>
   <header>
@@ -16,8 +16,9 @@
      <div class="col-md-12">
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
-         <li class="breadcrumb-item"><a href="../index.html">/Users/nicolasvauche/Sites/Symfony/sf_myblog/src</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Controller</a></li>
+         <li class="breadcrumb-item"><a href="../../index.html">/Users/nicolasvauche/Sites/Symfony/sf_myblog/src</a></li>
+         <li class="breadcrumb-item"><a href="../index.html">DataFixtures</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Blog</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -140,9 +141,9 @@
     </p>
    </footer>
   </div>
-  <script src="../_js/jquery.min.js?v=9.2.29" type="text/javascript"></script>
-  <script src="../_js/d3.min.js?v=9.2.29" type="text/javascript"></script>
-  <script src="../_js/nv.d3.min.js?v=9.2.29" type="text/javascript"></script>
+  <script src="../../_js/jquery.min.js?v=9.2.29" type="text/javascript"></script>
+  <script src="../../_js/d3.min.js?v=9.2.29" type="text/javascript"></script>
+  <script src="../../_js/nv.d3.min.js?v=9.2.29" type="text/javascript"></script>
   <script type="text/javascript">
 $(document).ready(function() {
   nv.addGraph(function() {
@@ -223,7 +224,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"DefaultController.php.html#9\">App\\Controller\\DefaultController<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"BlogFixtures.php.html#9\">App\\DataFixtures\\Blog\\BlogFixtures<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -247,7 +248,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"DefaultController.php.html#11\">App\\Controller\\DefaultController::index<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"BlogFixtures.php.html#11\">App\\DataFixtures\\Blog\\BlogFixtures::load<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);
