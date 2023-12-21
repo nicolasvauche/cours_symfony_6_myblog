@@ -58,15 +58,25 @@
                     <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                 </a>
                 <ul class="dropdown-menu text-small bg-light">
-                    <li>
-                        <a class="dropdown-item text-bg-light" href="#">Mon Profil</a>
-                    </li>
-                    <li>
-                        <hr class="dropdown-divider">
-                    </li>
-                    <li>
-                        <a class="dropdown-item text-danger" href="#">Déconnexion</a>
-                    </li>
+                    {% if app.user %}
+                        <li>
+                            <a class="dropdown-item text-bg-light" href="#">Mon Profil</a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li>
+                            <a class="dropdown-item text-danger"
+                               href="{{ path('app_logout') }}"
+                               onclick="return window.confirm('Vous partez déjà ?')">
+                                Déconnexion
+                            </a>
+                        </li>
+                    {% else %}
+                        <li>
+                            <a class="dropdown-item text-bg-light" href="{{ path('app_login') }}">Connexion</a>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
