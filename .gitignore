@@ -3,6 +3,8 @@
 .idea/
 myblog.crt
 myblog.key
+/public/uploads/*
+!/public/uploads/.gitkeep
 ###< myblog/local ###
 
 

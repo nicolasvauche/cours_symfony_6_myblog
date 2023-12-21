@@ -3,7 +3,11 @@
 {% block title %}Article : {{ post.title }}{% endblock %}
 
 {% block main %}
-    <h1>Fiche Article : {{ post.title }}</h1>
+    <h1 class="mb-3">Fiche Article : {{ post.title }}</h1>
+
+    {% if post.cover and app_fileUploaderService.checkFileExists(post.cover) %}
+        <img src="{{ asset('uploads/' ~ post.cover) }}" class="app-image cover rounded mb-3" alt="{{ post.title }}"/>
+    {% endif %}
 
     <table class="table">
         <tbody>

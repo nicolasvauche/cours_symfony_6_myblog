@@ -3,6 +3,7 @@ twig:
   globals:
     app_locale: '%app_locale%'
     app_categoryListingService: '@App\Service\CategoryListingService'
+    app_fileUploaderService: '@App\Service\FileUploaderService'
 
   form_themes: [ 'bootstrap_5_layout.html.twig' ]
 
