@@ -5,6 +5,7 @@ namespace App\Tests\Functional\Controller\Blog\Category;
 use App\Entity\Blog\Category;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\EntityRepository;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class AddControllerTest extends WebTestCase
@@ -12,6 +13,7 @@ class AddControllerTest extends WebTestCase
     private string $path = '/blog/categorie/';
     private EntityManagerInterface $manager;
     private EntityRepository $repository;
+    private KernelBrowser $client;
 
     protected function setUp(): void
     {
