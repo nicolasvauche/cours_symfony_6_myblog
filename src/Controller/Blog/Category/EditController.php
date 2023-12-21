@@ -9,11 +9,13 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/blog/categorie', name: 'app_blog_category_')]
 class EditController extends AbstractController
 {
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
+    #[isGranted('ROLE_ADMIN')]
     public function edit(Request                $request,
                          Category               $category,
                          EntityManagerInterface $entityManager): Response

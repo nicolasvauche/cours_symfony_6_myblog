@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/blog/article', name: 'app_blog_post_')]
 class IndexController extends AbstractController
@@ -26,6 +27,7 @@ class IndexController extends AbstractController
     }
 
     #[Route('/nouveau', name: 'new', methods: ['GET', 'POST'])]
+    #[isGranted('ROLE_ADMIN')]
     public function new(Request                $request,
                         EntityManagerInterface $entityManager,
                         FileUploaderService    $fileUploaderService): Response
@@ -63,6 +65,7 @@ class IndexController extends AbstractController
     }
 
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
+    #[isGranted('ROLE_ADMIN')]
     public function edit(Request                $request,
                          Post                   $post,
                          EntityManagerInterface $entityManager,
@@ -99,6 +102,7 @@ class IndexController extends AbstractController
      * @throws Exception
      */
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[isGranted('ROLE_ADMIN')]
     public function delete(Request                $request,
                            Post                   $post,
                            EntityManagerInterface $entityManager,
