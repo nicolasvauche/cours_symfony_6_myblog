@@ -4,4 +4,18 @@
 
 {% block main %}
     <h1>Bienvenue sur mon blog !</h1>
+
+    {% if featured | length > 0 %}
+        <section>
+            <h2 class="mb-3">Les Actualités</h2>
+
+            <ul>
+                {% for featuredPost in featured %}
+                    <li>{{ featuredPost.post.title }}</li>
+                {% endfor %}
+            </ul>
+        </section>
+    {% endif %}
+
+
 {% endblock %}

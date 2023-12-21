@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures\Blog;
 
+use App\Entity\Blog\Featured;
 use App\Entity\Blog\Post;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
@@ -19,8 +20,14 @@ class PostFixtures extends Fixture implements OrderedFixtureInterface
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Debitis dolor error laboriosam maxime minus optio, quaerat sequi sint vel voluptates! Accusantium animi asperiores at id iure maiores ratione rerum saepe.</p>
 EOF
             )
-            ->addCategory($this->getReference('category-test'));
+            ->addCategory($this->getReference('category-test'))
+            ->setPublishedAt(new \DateTimeImmutable('-1 day'));
         $manager->persist($post);
+
+        $featured = (new Featured())
+            ->setPost($post)
+            ->setEndAt(new \DateTimeImmutable('+1 hour'));
+        $manager->persist($featured);
 
         $manager->flush();
     }

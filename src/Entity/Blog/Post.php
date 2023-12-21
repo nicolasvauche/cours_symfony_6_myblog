@@ -44,6 +44,9 @@ class Post
     #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
     private Collection $categories;
 
+    #[ORM\OneToOne(mappedBy: 'post', cascade: ['persist', 'remove'])]
+    private ?Featured $featured = null;
+
     public function __construct()
     {
         $this->categories = new ArrayCollection();
@@ -149,6 +152,23 @@ class Post
         if ($this->categories->removeElement($category)) {
             $category->removePost($this);
         }
+
+        return $this;
+    }
+
+    public function getFeatured(): ?Featured
+    {
+        return $this->featured;
+    }
+
+    public function setFeatured(Featured $featured): static
+    {
+        // set the owning side of the relation if necessary
+        if ($featured->getPost() !== $this) {
+            $featured->setPost($this);
+        }
+
+        $this->featured = $featured;
 
         return $this;
     }
