@@ -41,7 +41,7 @@ class Post
     #[Assert\Type(type: \DateTimeImmutable::class, message: 'La date de publication doit être une date valide')]
     private ?\DateTimeImmutable $publishedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts', cascade: ['persist', 'remove'])]
     private Collection $categories;
 
     #[ORM\OneToOne(mappedBy: 'post', cascade: ['persist', 'remove'])]
@@ -139,7 +139,7 @@ class Post
 
     public function addCategory(Category $category): static
     {
-        if (!$this->categories->contains($category)) {
+        if(!$this->categories->contains($category)) {
             $this->categories->add($category);
             $category->addPost($this);
         }
@@ -149,7 +149,7 @@ class Post
 
     public function removeCategory(Category $category): static
     {
-        if ($this->categories->removeElement($category)) {
+        if($this->categories->removeElement($category)) {
             $category->removePost($this);
         }
 
@@ -164,7 +164,7 @@ class Post
     public function setFeatured(Featured $featured): static
     {
         // set the owning side of the relation if necessary
-        if ($featured->getPost() !== $this) {
+        if($featured->getPost() !== $this) {
             $featured->setPost($this);
         }
 

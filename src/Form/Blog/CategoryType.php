@@ -15,18 +15,18 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name', TextType::class, [
-                'required' => true,
-                'label' => 'Nom de la Catégorie',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
             ->add('parent', EntityType::class, [
                 'required' => false,
                 'label' => 'Catégorie parente',
                 'class' => Category::class,
                 'choice_label' => 'name',
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('name', TextType::class, [
+                'required' => true,
+                'label' => 'Nom de la Catégorie',
                 'attr' => [
                     'class' => 'form-control',
                 ],

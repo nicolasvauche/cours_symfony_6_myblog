@@ -28,7 +28,7 @@ class Category
     #[ORM\OneToMany(mappedBy: 'parent', targetEntity: self::class)]
     private Collection $children;
 
-    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'categories')]
+    #[ORM\ManyToMany(targetEntity: Post::class, inversedBy: 'categories', cascade: ['persist', 'remove'])]
     private Collection $posts;
 
     public function __construct()

@@ -19,6 +19,21 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('categories', EntityType::class, [
+                'required' => false,
+                'label' => "Catégories de l'article",
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'multiple' => true,
+                'attr' => [
+                    'class' => 'form-control',
+                ],
+            ])
+            ->add('newCategory', CategoryType::class, [
+                'required' => false,
+                'mapped' => false,
+                'label' => 'Nouvelle Catégorie',
+            ])
             ->add('title', TextType::class, [
                 'required' => true,
                 'label' => "Titre de l'article",
@@ -59,16 +74,6 @@ class PostType extends AbstractType
                 'required' => false,
                 'label' => "Date de publication",
                 'widget' => 'single_text',
-                'attr' => [
-                    'class' => 'form-control',
-                ],
-            ])
-            ->add('categories', EntityType::class, [
-                'required' => true,
-                'label' => "Catégories de l'article",
-                'class' => Category::class,
-                'choice_label' => 'name',
-                'multiple' => true,
                 'attr' => [
                     'class' => 'form-control',
                 ],

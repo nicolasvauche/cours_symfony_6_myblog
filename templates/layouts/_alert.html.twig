@@ -1,12 +1,12 @@
 {% if error is defined and error %}
-    <div class="alert alert-danger">
+    <div class="alert alert-danger" data-controller="alert--index">
         {{ error.messageKey|trans(error.messageData, 'security') }}
     </div>
 {% endif %}
 
 {% for label, messages in app.flashes %}
     {% for message in messages %}
-        <div class="alert alert-{{ label }}">
+        <div class="alert alert-{{ label }}" data-controller="alert--index">
             {{ message }}
         </div>
     {% endfor %}

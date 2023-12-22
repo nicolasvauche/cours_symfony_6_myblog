@@ -44,6 +44,12 @@ class IndexController extends AbstractController
                 $post->setCover($coverFileName);
             }
 
+            $newCategoryData = $form->get('newCategory')->getData();
+            if($newCategoryData) {
+                $entityManager->persist($newCategoryData);
+                $post->addCategory($newCategoryData);
+            }
+
             $entityManager->persist($post);
             $entityManager->flush();
 
@@ -84,9 +90,15 @@ class IndexController extends AbstractController
 
                 $coverFileName = $fileUploaderService->upload($coverFile);
                 $post->setCover($coverFileName);
-                $entityManager->persist($post);
             }
 
+            $newCategoryData = $form->get('newCategory')->getData();
+            if($newCategoryData) {
+                $entityManager->persist($newCategoryData);
+                $post->addCategory($newCategoryData);
+            }
+
+            $entityManager->persist($post);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_blog_post_index', [], Response::HTTP_SEE_OTHER);

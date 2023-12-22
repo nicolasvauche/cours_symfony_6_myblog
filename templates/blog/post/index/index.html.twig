@@ -15,6 +15,7 @@
                 <th>Créé le</th>
                 <th>Modifié le</th>
                 <th>Publié le</th>
+                <th>Catégories</th>
                 <th>&nbsp;</th>
             </tr>
         </thead>
@@ -28,6 +29,10 @@
                     <td>{{ post.createdAt ? post.createdAt|date('d/m/Y') : '' }}</td>
                     <td>{{ post.updatedAt ? post.updatedAt|date('d/m/Y') : '' }}</td>
                     <td>{{ post.publishedAt ? post.publishedAt|date('d/m/Y') : '' }}</td>
+                    <td>
+                        {% for category in post.categories %}
+                            {{ category.name }}{% if not loop.last %}, {% endif %}
+                        {% endfor %}
                     <td>
                         <a href="{{ path('app_blog_post_show', {'id': post.id}) }}">Détails</a>
                         <a href="{{ path('app_blog_post_edit', {'id': post.id}) }}">Modifier</a>
