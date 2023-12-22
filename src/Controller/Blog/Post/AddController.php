@@ -43,6 +43,8 @@ class AddController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Article ajouté avec succès !');
+
             return $this->redirectToRoute('app_blog_post_index', [], Response::HTTP_SEE_OTHER);
         }
 

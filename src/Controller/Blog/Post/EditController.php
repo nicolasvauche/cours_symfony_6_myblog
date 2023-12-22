@@ -24,12 +24,11 @@ class EditController extends AbstractController
                          EntityManagerInterface $entityManager,
                          FileUploaderService    $fileUploaderService): Response
     {
-        $postCategories = $post->getCategories();
-
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()) {
+            // Gestion du fichier uploadé
             /** @var UploadedFile $coverFile */
             $coverFile = $form->get('cover')->getData();
             if($coverFile) {
@@ -61,6 +60,8 @@ class EditController extends AbstractController
 
             $entityManager->persist($post);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Article modifié avec succès !');
 
             return $this->redirectToRoute('app_blog_post_index', [], Response::HTTP_SEE_OTHER);
         }

@@ -33,6 +33,8 @@ class DeleteController extends AbstractController
 
             $entityManager->remove($post);
             $entityManager->flush();
+
+            $this->addFlash('success', 'Article supprimé avec succès');
         }
 
         return $this->redirectToRoute('app_blog_post_index', [], Response::HTTP_SEE_OTHER);
