@@ -41,7 +41,8 @@ class Post
     #[Assert\Type(type: \DateTimeImmutable::class, message: 'La date de publication doit être une date valide')]
     private ?\DateTimeImmutable $publishedAt = null;
 
-    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts', cascade: ['persist', 'remove'])]
+    #[ORM\ManyToMany(targetEntity: Category::class, mappedBy: 'posts')]
+    #[orm\OrderBy(['id' => 'ASC'])]
     private Collection $categories;
 
     #[ORM\OneToOne(mappedBy: 'post', cascade: ['persist', 'remove'])]

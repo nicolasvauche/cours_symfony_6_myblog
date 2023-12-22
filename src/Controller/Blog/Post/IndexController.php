@@ -2,10 +2,12 @@
 
 namespace App\Controller\Blog\Post;
 
+use App\Entity\Blog\Category;
 use App\Entity\Blog\Post;
 use App\Form\Blog\PostType;
 use App\Repository\Blog\PostRepository;
 use App\Service\FileUploaderService;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -77,6 +79,8 @@ class IndexController extends AbstractController
                          EntityManagerInterface $entityManager,
                          FileUploaderService    $fileUploaderService): Response
     {
+        $postCategories = $post->getCategories();
+
         $form = $this->createForm(PostType::class, $post);
         $form->handleRequest($request);
 
@@ -92,6 +96,18 @@ class IndexController extends AbstractController
                 $post->setCover($coverFileName);
             }
 
+            // Gestion des catégories existantes
+            $submittedCategories = $form->get('categories')->getData();
+            foreach($entityManager->getRepository(Category::class)->findAll() as $category) {
+                if(!$submittedCategories->contains($category)) {
+                    $category->removePost($post);
+                } else {
+                    $category->addPost($post);
+                }
+                $entityManager->persist($category);
+            }
+
+            // Gestion des nouvelles catégories
             $newCategoryData = $form->get('newCategory')->getData();
             if($newCategoryData) {
                 $entityManager->persist($newCategoryData);
@@ -113,7 +129,8 @@ class IndexController extends AbstractController
     /**
      * @throws Exception
      */
-    #[Route('/{id}', name: 'delete', methods: ['POST'])]
+    #[
+        Route('/{id}', name: 'delete', methods: ['POST'])]
     #[isGranted('ROLE_ADMIN')]
     public function delete(Request                $request,
                            Post                   $post,
