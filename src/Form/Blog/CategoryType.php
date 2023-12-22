@@ -17,14 +17,14 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', TextType::class, [
                 'required' => true,
-                'label' => 'Catégorie parente',
+                'label' => 'Nom de la Catégorie',
                 'attr' => [
                     'class' => 'form-control',
                 ],
             ])
             ->add('parent', EntityType::class, [
                 'required' => false,
-                'label' => 'Nom de la Catégorie',
+                'label' => 'Catégorie parente',
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'attr' => [

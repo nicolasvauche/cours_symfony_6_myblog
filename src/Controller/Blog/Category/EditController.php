@@ -15,11 +15,12 @@ use Symfony\Component\Security\Http\Attribute\IsGranted;
 class EditController extends AbstractController
 {
     #[Route('/{id}/modifier', name: 'edit', methods: ['GET', 'POST'])]
-    #[isGranted('ROLE_ADMIN')]
     public function edit(Request                $request,
                          Category               $category,
                          EntityManagerInterface $entityManager): Response
     {
+        //$this->denyAccessUnlessGranted('CATEGORY_EDIT', $category);
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 

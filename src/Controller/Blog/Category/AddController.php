@@ -9,16 +9,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/blog/categorie', name: 'app_blog_category_')]
 class AddController extends AbstractController
 {
     #[Route('/nouvelle', name: 'new', methods: ['GET', 'POST'])]
-    #[isGranted('ROLE_ADMIN')]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
         $category = new Category();
+
+        //$this->denyAccessUnlessGranted('CATEGORY_CREATE', $category);
+
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
 

@@ -8,16 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Http\Attribute\IsGranted;
 
 #[Route('/blog/categorie', name: 'app_blog_category_')]
 class DeleteController extends AbstractController
 {
     #[Route('/{id}', name: 'delete', methods: ['POST'])]
-    #[isGranted('ROLE_ADMIN')]
     public function delete(Request $request, Category $category, EntityManagerInterface $entityManager): Response
     {
         if($this->isCsrfTokenValid('delete' . $category->getId(), $request->request->get('_token'))) {
+            //$this->denyAccessUnlessGranted('CATEGORY_DELETE', $category);
+
             $entityManager->remove($category);
             $entityManager->flush();
         }
