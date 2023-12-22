@@ -12,11 +12,13 @@ class FileUploaderService
 {
     private string $targetDirectory;
     private Filesystem $filesystem;
+    private LogService $logService;
 
-    public function __construct(string $targetDirectory, Filesystem $filesystem)
+    public function __construct(string $targetDirectory, Filesystem $filesystem, LogService $logService)
     {
         $this->targetDirectory = $targetDirectory;
         $this->filesystem = $filesystem;
+        $this->logService = $logService;
     }
 
     public function upload(UploadedFile $file): string
@@ -50,7 +52,13 @@ class FileUploaderService
 
     public function checkFileExists(string $fileName): bool
     {
-        return $this->filesystem->exists($this->getTargetDirectory() . '/' . $fileName);
+        $exists = $this->filesystem->exists($this->getTargetDirectory() . '/' . $fileName);
+
+        if(!$exists) {
+            $this->logService->logError(sprintf("Le fichier %s n'existe pas", $fileName,));
+        }
+
+        return $exists;
     }
 
     public function getTargetDirectory(): string
